@@ -13,14 +13,15 @@ public class Arduino : MonoBehaviour
 	// Serial
 	public string portName;
 	public int baudRate = 9600;
-	SerialPort arduinoSerial;
+	
 	public static int ValorArduinoSensor;
 	public int sensor;
+    SerialPort arduinoSerial = new SerialPort("COM9", 9600);
 
-	void Start()
+    void Start()
 	{
 		// Open Serial port
-		arduinoSerial = new SerialPort(portName, baudRate);
+		
 		// Set buffersize so read from Serial would be normal
 		arduinoSerial.ReadTimeout = 1;
 		arduinoSerial.ReadBufferSize = 8192;
@@ -36,6 +37,7 @@ public class Arduino : MonoBehaviour
 	void Update()
 	{
 		ReadFromArduino();
+		Debug.Log(ValorArduinoSensor);
 	}
 
 	public void ReadFromArduino()
