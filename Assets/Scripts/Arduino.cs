@@ -13,44 +13,54 @@ public class Arduino : MonoBehaviour
 	// Serial
 	public string portName;
 	public int baudRate = 9600;
+	public string str;
 	
 	public static int ValorArduinoSensor;
 	public int sensor;
-    SerialPort arduinoSerial = new SerialPort("COM9", 9600);
+    SerialPort arduinoSerial = new SerialPort("COM5", 9600);
 
     void Start()
 	{
 		// Open Serial port
 		
-		// Set buffersize so read from Serial would be normal
-		arduinoSerial.ReadTimeout = 1;
-		arduinoSerial.ReadBufferSize = 8192;
-		arduinoSerial.WriteBufferSize = 128;
-		arduinoSerial.ReadBufferSize = 4096;
-		arduinoSerial.Parity = Parity.None;
-		arduinoSerial.StopBits = StopBits.One;
-		arduinoSerial.DtrEnable = true;
-		arduinoSerial.RtsEnable = true; ;
+		//// Set buffersize so read from Serial would be normal
+		//arduinoSerial.ReadTimeout = 1;
+		//arduinoSerial.ReadBufferSize = 8192;
+		//arduinoSerial.WriteBufferSize = 128;
+		//arduinoSerial.ReadBufferSize = 4096;
+		//arduinoSerial.Parity = Parity.None;
+		//arduinoSerial.StopBits = StopBits.One;
+		//arduinoSerial.DtrEnable = true;
+		//arduinoSerial.RtsEnable = true; 
 		arduinoSerial.Open();
 	}
 
 	void Update()
 	{
-		ReadFromArduino();
-		Debug.Log(ValorArduinoSensor);
+		//ReadFromArduino();
+
+		str = arduinoSerial.ReadLine();
+		Debug.Log(str);
+		
+
 	}
 
 	public void ReadFromArduino()
 	{
-		string str = null;
+		
 		try
 		{
 			str = arduinoSerial.ReadLine();
-			//			Debug.Log(str);
+				Debug.Log(str);
 			
 			if (Int32.TryParse(str, out ValorArduinoSensor))
 			{
-				sensor = ValorArduinoSensor;
+				//sensor = ValorArduinoSensor;
+				if(ValorArduinoSensor !=0)
+                {
+					//Debug.Log(ValorArduinoSensor);
+				}
+				
 			}
 		}
 		catch (TimeoutException e)
