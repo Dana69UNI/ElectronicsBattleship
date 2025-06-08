@@ -31,7 +31,8 @@ public class Arduino : MonoBehaviour
     public GameObject P2ColocaBarco;
     public GameObject P1Ataque;
     public GameObject P2Ataque;
-    public GameObject Agua;
+    public GameObject P1Agua;
+    public GameObject P2Agua;
     public GameObject P1HASGANAU;
     public GameObject P2HASGANAU;
 
@@ -320,9 +321,20 @@ public class Arduino : MonoBehaviour
         }
         if (str == "444")
         {
-            P2Ataque.SetActive(false);
-            Agua.SetActive(true);
-            StartCoroutine(WaterTurnOff());
+            if (P1Ataque.activeSelf == true)
+            {
+                P1Ataque.SetActive(false);
+                P1Agua.SetActive(true);
+                StartCoroutine(WaterTurnOff(P2Ataque));
+            }
+            if (P2Ataque.activeSelf == true)
+            {
+                P2Ataque.SetActive(false);
+                P2Agua.SetActive(true);
+                StartCoroutine(WaterTurnOff(P1Ataque));
+            }
+        
+            
             //despues Water
             Debug.Log("AGUA:P");
         }
@@ -335,11 +347,13 @@ public class Arduino : MonoBehaviour
         P2HASGANAU.SetActive(false);
         PulsaParaIniciar.SetActive(true);
     }
-    IEnumerator WaterTurnOff()
+    IEnumerator WaterTurnOff(GameObject Attack)
     {
         yield return new WaitForSeconds(4.5f);
-        Agua.SetActive(false);
-        PulsaParaIniciar.SetActive(true);
+        P1Agua.SetActive(false);
+        P2Agua.SetActive(false);
+        Attack.SetActive(true);
+
     }
 
     private void GameHandler(string str)

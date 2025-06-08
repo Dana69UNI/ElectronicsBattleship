@@ -296,6 +296,10 @@ void LEDPattern2()
 
 void SliderDistance(int dist)
 {
+  if(dist == 0)
+  {
+    
+  }
   if(dist < 5)
   {
     Serial.println("3205");
