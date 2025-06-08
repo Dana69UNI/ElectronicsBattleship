@@ -24,6 +24,9 @@ public class Arduino : MonoBehaviour
 
     public GameObject PulsaParaIniciar;
     public Slider SliderColoca1;
+    public Slider SliderColoca2;
+    public Slider SliderAtaca1;
+    public Slider SliderAtaca2;
     public GameObject P1ColocaBarco;
     public GameObject P2ColocaBarco;
     public GameObject P1Ataque;
@@ -60,7 +63,7 @@ public class Arduino : MonoBehaviour
 
 		//str = arduinoSerial.ReadLine();
 		//Debug.Log(str);
-        if(Fase==0 || Fase==2 || Fase==4 || Fase==6)
+        if(Fase==0)
         {
             if (str == "3205")
             {
@@ -99,9 +102,124 @@ public class Arduino : MonoBehaviour
                 SliderColoca1.value = 40;
             }
         }
-		
-
-	}
+        if (Fase == 2)
+        {
+            if (str == "3205")
+            {
+                SliderColoca2.value = 0;
+            }
+            if (str == "3210")
+            {
+                SliderColoca2.value = 5;
+            }
+            if (str == "3215")
+            {
+                SliderColoca2.value = 10;
+            }
+            if (str == "3220")
+            {
+                SliderColoca2.value = 15;
+            }
+            if (str == "3225")
+            {
+                SliderColoca2.value = 20;
+            }
+            if (str == "3230")
+            {
+                SliderColoca2.value = 25;
+            }
+            if (str == "3235")
+            {
+                SliderColoca2.value = 30;
+            }
+            if (str == "3240")
+            {
+                SliderColoca2.value = 35;
+            }
+            if (str == "3245")
+            {
+                SliderColoca2.value = 40;
+            }
+        }
+        if (Fase == 4)
+        {
+            if (str == "3205")
+            {
+                SliderAtaca1.value = 0;
+            }
+            if (str == "3210")
+            {
+                SliderAtaca1.value = 5;
+            }
+            if (str == "3215")
+            {
+                SliderAtaca1.value = 10;
+            }
+            if (str == "3220")
+            {
+                SliderAtaca1.value = 15;
+            }
+            if (str == "3225")
+            {
+                SliderAtaca1.value = 20;
+            }
+            if (str == "3230")
+            {
+                SliderAtaca1.value = 25;
+            }
+            if (str == "3235")
+            {
+                SliderAtaca1.value = 30;
+            }
+            if (str == "3240")
+            {
+                SliderAtaca1.value = 35;
+            }
+            if (str == "3245")
+            {
+                SliderAtaca1.value = 40;
+            }
+        }
+        if (Fase == 6)
+        {
+            if (str == "3205")
+            {
+                SliderAtaca2.value = 0;
+            }
+            if (str == "3210")
+            {
+                SliderAtaca2.value = 5;
+            }
+            if (str == "3215")
+            {
+                SliderAtaca2.value = 10;
+            }
+            if (str == "3220")
+            {
+                SliderAtaca2.value = 15;
+            }
+            if (str == "3225")
+            {
+                SliderAtaca2.value = 20;
+            }
+            if (str == "3230")
+            {
+                SliderAtaca2.value = 25;
+            }
+            if (str == "3235")
+            {
+                SliderAtaca2.value = 30;
+            }
+            if (str == "3240")
+            {
+                SliderAtaca2.value = 35;
+            }
+            if (str == "3245")
+            {
+                SliderAtaca2.value = 40;
+            }
+        }
+    }
 
 	public void ReadFromArduino()
 	{
