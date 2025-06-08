@@ -6,6 +6,8 @@ using System;
 using System.IO.Ports;
 // For compare array
 using System.Linq;
+using UnityEngine.UI;
+using Unity.VisualScripting;
 
 public class Arduino : MonoBehaviour
 {
@@ -21,6 +23,7 @@ public class Arduino : MonoBehaviour
     private int ValorDistanciaPlayer2;
 
     public GameObject PulsaParaIniciar;
+    public Slider SliderColoca1;
     public GameObject P1ColocaBarco;
     public GameObject P2ColocaBarco;
     public GameObject P1Ataque;
@@ -47,7 +50,7 @@ public class Arduino : MonoBehaviour
         //arduinoSerial.StopBits = StopBits.One;
         //arduinoSerial.DtrEnable = true;
         //arduinoSerial.RtsEnable = true; 
-        arduinoSerial.ReadTimeout = 100;
+        arduinoSerial.ReadTimeout = 10;
         arduinoSerial.Open();
 	}
 
@@ -57,6 +60,45 @@ public class Arduino : MonoBehaviour
 
 		//str = arduinoSerial.ReadLine();
 		//Debug.Log(str);
+        if(Fase==0 || Fase==2 || Fase==4 || Fase==6)
+        {
+            if (str == "3205")
+            {
+                SliderColoca1.value = 0;
+            }
+            if (str == "3210")
+            {
+                SliderColoca1.value = 5;
+            }
+            if (str == "3215")
+            {
+                SliderColoca1.value = 10;
+            }
+            if (str == "3220")
+            {
+                SliderColoca1.value = 15;
+            }
+            if (str == "3225")
+            {
+                SliderColoca1.value = 20;
+            }
+            if (str == "3230")
+            {
+                SliderColoca1.value = 25;
+            }
+            if (str == "3235")
+            {
+                SliderColoca1.value = 30;
+            }
+            if (str == "3240")
+            {
+                SliderColoca1.value = 35;
+            }
+            if (str == "3245")
+            {
+                SliderColoca1.value = 40;
+            }
+        }
 		
 
 	}
@@ -76,8 +118,8 @@ public class Arduino : MonoBehaviour
                 {
 					CheckArduinoNumber(str);
 					GameHandler(str);
-					//Debug.Log(ValorArduinoSensor);
-				}
+                    //Debug.Log(ValorArduinoSensor);
+                }
 				
 			}
 		}
@@ -200,4 +242,8 @@ public class Arduino : MonoBehaviour
 		}
 
     }
+
+    
+
+
 }
